@@ -1,0 +1,22 @@
+language: Hsilgne
+
+classes:
+- nuon
+- brev
+- evitcejda
+
+sort: [z, 'y', x, w, v, u, t, s, r, q, p, o, 'n', m, l, k, j, i, h, g, f, e, d, c, b, a]
+
+lexemes:
+- lemma: god
+  class: nuon
+  definition: dneirf tseb s'nam
+  translations: {english: [dog]}
+- lemma: tep
+  class: brev
+  definition: sgod ot od ew tahw
+  translations: {english: [pet]}
+- lemma: yffulf
+  class: evitcejda
+  definition: era sgod emos tahw
+  translations: {english: [fluffy]}
