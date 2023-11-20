@@ -19,7 +19,7 @@ pub struct Lexeme {
 
 #[derive(Serialize, Deserialize)]
 pub struct Lexicon {
-	pub language: String,
+	pub title: String,
 	pub classes: Vec<String>,
 	pub sort: Option<Vec<String>>,
 	pub lexemes: Vec<Lexeme>,

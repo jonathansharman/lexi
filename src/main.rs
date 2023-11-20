@@ -1,6 +1,6 @@
 mod lexicon;
 
-use std::{fs::File, io::Write};
+use std::fs::File;
 
 use anyhow::Result;
 use clap::Parser;
@@ -13,32 +13,30 @@ use crate::lexicon::Lexicon;
 struct Args {
 	/// Path to the lexicon YAML file to render.
 	#[arg(index = 1)]
-	lexicon: String,
-	/// Path to a custom font file.
-	#[arg(short, long)]
-	font: Option<String>,
-	/// Output path for the generated HTML.
-	#[arg(short = 'o', long, default_value = "index.html")]
-	html: String,
+	input: String,
+	/// Output path.
+	#[arg(short = 'o', long, default_value = "dictionary.md")]
+	output: String,
 }
 
 fn main() -> Result<()> {
 	let args = Args::parse();
 
 	// Load and validate the lexicon.
-	let lexicon = Lexicon::load(args.lexicon)?;
+	let lexicon = Lexicon::load(args.input)?;
 
-	// Load templates.
-	let tera = Tera::new("templates/**/*")?;
+	// Load the template.
+	let mut tera = Tera::default();
+	tera.add_raw_template(
+		"dictionary.md",
+		include_str!("templates/dictionary.md.tmpl"),
+	)?;
+
+	// Render the lexicon.
 	let mut context = Context::new();
 	context.insert("lexicon", &lexicon);
-	context.insert("font", &args.font);
-
-	// Generate HTML.
-	let html = tera.render("index.html.tmpl", &context)?;
-	let mut html_file = File::create(args.html)?;
-	write!(html_file, "{html}")?;
-	html_file.flush()?;
+	let output = File::create(args.output)?;
+	tera.render_to("dictionary.md", &context, output)?;
 
 	Ok(())
 }
