@@ -1,8 +1,4 @@
-<h1>
-{{- lexicon.format.native.prefix -}}
-{{- lexicon.format.native_foreign.title -}}
-{{- lexicon.format.native.suffix -}}
-</h1>
+<h1>{{ lexicon.format.native_foreign.title }}</h1>
 {% for lexeme in lexicon.lexemes -%}
 {%- if lexeme.glosses or lexeme.translation %}
 <div id="{{ lexeme.lemma }}">
