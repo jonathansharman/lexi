@@ -8,7 +8,9 @@
 	</a></b>
 	{{- lexicon.format.foreign_native.delimiter -}}
 	{%- for gloss in glosses -%}
+		{{- lexicon.format.native.prefix -}}
 		{{- gloss -}}
+		{{- lexicon.format.native.suffix -}}
 		{%- if not loop.last -%}
 			{{- lexicon.format.foreign_native.gloss_delimiter -}}
 		{%- endif -%}
