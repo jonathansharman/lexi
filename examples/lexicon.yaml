@@ -76,7 +76,13 @@ lexemes:
   # the semantics, and multiple possible glosses. Note that HTML tags are
   # allowed in any of these fields.
   definition: ekscitanta oniajn partiklojn
-  translation: |
+  translation: >-
     warm or hot; cf. <i>varmeta</i> ("lukewarm") and <i>varmega</i> ("hot",
     "very hot")
   glosses: [warm, hot]
+- lemma: krokodili
+  class: verbo
+  definition: paroli inter esperantistoj en lingvo krom Esperanto
+  # Since "krokodili" has a translation but no glosses, it will appear in the
+  # native-foreign dictionary but not the foreign-native dictionary.
+  translation: to speak among Esperantists in a language besides Esperanto

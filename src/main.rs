@@ -1,7 +1,7 @@
 mod format;
 mod lexicon;
 
-use std::fs::File;
+use std::{collections::HashMap, fs::File};
 
 use anyhow::Result;
 use clap::Parser;
@@ -44,6 +44,28 @@ fn main() -> Result<()> {
 
 	// Add the lexicon settings to the text template context.
 	context.insert("lexicon", &lexicon);
+
+	// Add a reverse index of foreign-to-native glosses to the context.
+	let foreign_to_native: Vec<(String, Vec<String>)> = lexicon
+		.lexemes
+		.iter()
+		.flat_map(|lexeme| {
+			lexeme
+				.glosses
+				.iter()
+				.cloned()
+				.map(|gloss| (gloss, lexeme.lemma.clone()))
+		})
+		.fold(
+			HashMap::<String, Vec<String>>::new(),
+			|mut acc, (gloss, lemma)| {
+				acc.entry(gloss).or_default().push(lemma);
+				acc
+			},
+		)
+		.into_iter()
+		.collect();
+	context.insert("foreign_to_native", &foreign_to_native);
 
 	// Render the requested documents.
 	if let Some(dictionary) = args.dictionary {

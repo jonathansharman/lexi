@@ -4,7 +4,7 @@
 {{- lexicon.format.native.suffix -}}
 </h1>
 {% for lexeme in lexicon.lexemes -%}
-{%- if lexeme.definition %}
+{%- if lexeme.glosses or lexeme.translation %}
 <div id="{{ lexeme.lemma }}">
 	<b><a href="#{{ lexeme.lemma }}">
 		{{- lexicon.format.native.prefix -}}
@@ -18,11 +18,11 @@
 			{{- lexicon.format.native_foreign.gloss_delimiter -}}
 		{%- endif -%}
 	{%- endfor -%}
-	{%- if lexeme.translation -%}
+	{%- if lexeme.translation %}
 	<div style="margin-left:20px">
-		{{- lexeme.translation -}}
+		{{ lexeme.translation }}
 	</div>
-	{%- endif -%}
+	{%- endif %}
 </div>
 {% endif -%}
 {%- endfor -%}

@@ -1,22 +1,17 @@
 <h1>{{ lexicon.format.foreign_native.title }}</h1>
-{% for lexeme in lexicon.lexemes -%}
-{%- if lexeme.definition %}
-<div id="{{ lexeme.lemma }}">
-	<b><a href="#{{ lexeme.lemma }}">
-		{{- lexeme.lemma -}}
+{% for foreign_glosses in foreign_to_native -%}
+{%- set foreign = foreign_glosses.0 -%}
+{%- set glosses = foreign_glosses.1 %}
+<div id="{{ foreign }}">
+	<b><a href="#{{ foreign }}">
+		{{- foreign -}}
 	</a></b>
 	{{- lexicon.format.foreign_native.delimiter -}}
-	{%- for gloss in lexeme.glosses -%}
+	{%- for gloss in glosses -%}
 		{{- gloss -}}
 		{%- if not loop.last -%}
 			{{- lexicon.format.foreign_native.gloss_delimiter -}}
 		{%- endif -%}
-	{%- endfor -%}
-	{%- if lexeme.translation -%}
-	<div style="margin-left:20px">
-		{{- lexeme.translation -}}
-	</div>
-	{%- endif -%}
+	{%- endfor %}
 </div>
-{% endif -%}
-{%- endfor -%}
+{% endfor -%}
