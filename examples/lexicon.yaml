@@ -43,6 +43,8 @@ format:
     delimiter: ' · '
     # Separates each native gloss for a foreign word.
     gloss_delimiter: '; '
+  # The CSS length to use for hanging indentation.
+  indent: '20px'
 
 # Most of a lexicon file will be its lexemes list. Every lexeme must include at
 # least a lemma and class. The native definition is optional; if present, the

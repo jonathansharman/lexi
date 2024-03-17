@@ -1,11 +1,23 @@
 use serde::{Deserialize, Serialize};
 
 /// Formatting settings for all documents.
-#[derive(Serialize, Deserialize, Default)]
+#[derive(Serialize, Deserialize)]
 pub struct Format {
 	native: NativeDictionary,
 	native_foreign: TranslationDictionary,
 	foreign_native: TranslationDictionary,
+	indent: String,
+}
+
+impl Default for Format {
+	fn default() -> Self {
+		Self {
+			native: Default::default(),
+			native_foreign: Default::default(),
+			foreign_native: Default::default(),
+			indent: "20px".into(),
+		}
+	}
 }
 
 /// Formatting settings for the monolingual dictionary and for native text in

@@ -21,7 +21,7 @@
 		{%- endfor -%}
 	{%- endif -%}
 	{%- if lexeme.translation %}
-	<div style="margin-left:20px">
+	<div style="margin-left:{{ lexicon.format.indent }}">
 		{{ lexeme.translation }}
 	</div>
 	{%- endif %}

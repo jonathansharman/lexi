@@ -5,6 +5,7 @@ use std::{collections::HashMap, fs::File};
 
 use anyhow::Result;
 use clap::Parser;
+use itertools::Itertools;
 use tera::{Context, Tera};
 
 use crate::lexicon::Lexicon;
@@ -64,6 +65,7 @@ fn main() -> Result<()> {
 			},
 		)
 		.into_iter()
+		.sorted()
 		.collect();
 	context.insert("foreign_to_native", &foreign_to_native);
 
