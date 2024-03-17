@@ -31,7 +31,7 @@ format:
     suffix: ''
   # Settings for the native-foreign translation dictionary.
   native_foreign:
-    title: Vortaro Esperanta-Angla
+    title: Esperanto-English Dictionary
     # Separates a native word from its foreign glosses.
     delimiter: ' · '
     # Separates each foreign gloss for a native word.
