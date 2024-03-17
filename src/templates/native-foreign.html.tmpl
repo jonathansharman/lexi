@@ -1,0 +1,28 @@
+<h1>
+{{- lexicon.format.native.prefix -}}
+{{- lexicon.format.native_foreign.title -}}
+{{- lexicon.format.native.suffix -}}
+</h1>
+{% for lexeme in lexicon.lexemes -%}
+{%- if lexeme.definition %}
+<div id="{{ lexeme.lemma }}">
+	<b><a href="#{{ lexeme.lemma }}">
+		{{- lexicon.format.native.prefix -}}
+		{{- lexeme.lemma -}}
+		{{- lexicon.format.native.suffix -}}
+	</a></b>
+	{{- lexicon.format.native_foreign.delimiter -}}
+	{%- for gloss in lexeme.glosses -%}
+		{{- gloss -}}
+		{%- if not loop.last -%}
+			{{- lexicon.format.native_foreign.gloss_delimiter -}}
+		{%- endif -%}
+	{%- endfor -%}
+	{%- if lexeme.translation -%}
+	<div style="margin-left:20px">
+		{{- lexeme.translation -}}
+	</div>
+	{%- endif -%}
+</div>
+{% endif -%}
+{%- endfor -%}

@@ -1,22 +1,82 @@
-title: yranoitciD Hsilgne
+# In a lexicon file, "native" settings refer to the language of the lexicon
+# we're defining (in this example Esperanto), and "foreign" settings to the
+# language we're translating it to/from (in this example English).
 
+# These word classes (or parts of speech) are used to validate the class values
+# in the list of lexemes. These should be the native word classes and don't need
+# to map one-to-one with word classes in the foreign language.
 classes:
-- nuon
-- brev
-- evitcejda
+- substantivo
+- verbo
+- adjektivo
+- difinilo
 
-sort: [z, 'y', x, w, v, u, t, s, r, q, p, o, 'n', m, l, k, j, i, h, g, f, e, d, c, b, a]
+# Optionally sort lexemes by lemma, according to a list of graphemes. Be careful
+# when these graphemes include 'n' or 'y' since YAML treats those strings as
+# boolean literals unless they're quoted (note the 'n' below).
+sort: [a, b, c, ĉ, d, e, f, g, ĝ, h, ĥ, i, j, ĵ, k, l, m, 'n', o, p, r, s, ŝ, t, u, ŭ, v, z]
 
+# These formatting settings control how the dictionaries are rendered. The
+# format key and all nested keys are optional. Except for the titles, which
+# default to blank, the following uses all default values.
+format:
+  # Settings for the monolingual native dictionary and for native words in the
+  # translation dictionaries.
+  native:
+    title: Vortaro de Esperanto
+    # The native prefix and suffix strings will flank each block of native text
+    # in any rendered content. This can be useful for adding markup tags to use
+    # a custom font, for instance.
+    prefix: ''
+    suffix: ''
+  # Settings for the native-foreign translation dictionary.
+  native_foreign:
+    title: Vortaro Esperanta-Angla
+    # Separates a native word from its foreign glosses.
+    delimiter: ' · '
+    # Separates each foreign gloss for a native word.
+    gloss_delimiter: '; '
+  # Settings for the foreign-native translation dictionary.
+  foreign_native:
+    title: English-Esperanto Dictionary
+    # Separates a foreign word from its native glosses.
+    delimiter: ' · '
+    # Separates each native gloss for a foreign word.
+    gloss_delimiter: '; '
+
+# Most of a lexicon file will be its lexemes list. Every lexeme must include at
+# least a lemma and class. The native definition is optional; if present, the
+# lexeme will be included in the monolingual dictionary.
+#
+# The gloss field provides a many-to-many link between native and foreign
+# lexemes. A lexeme will be present in both translation dictionaries if it has
+# at least one gloss. If a lexeme has no glosses, it will still be included in
+# the native-foreign dictionary as long as it has a translation, but it will not
+# be included in the foreign-native dictionary.
+#
+# Lexi will warn if an entry has no definition nor translation nor any glosses.
 lexemes:
-- lemma: god
-  class: nuon
-  definition: dneirf tseb s'nam
-  translations: {english: [dog]}
-- lemma: tep
-  class: brev
-  definition: sgod ot od ew tahw
-  translations: {english: [pet]}
-- lemma: yffulf
-  class: evitcejda
-  definition: era sgod emos tahw
-  translations: {english: [fluffy]}
+- lemma: hundo
+  class: substantivo
+  definition: speco de amika, fela besto
+  # Since this gloss overlaps very strongly with English, there's no need to
+  # include a translation as well.
+  glosses: [dog]
+- lemma: ĉi tiu
+  class: difinilo
+  # "ĉi tiu" is an ordinary combination of its components, so an Esperanto
+  # dictionary might not list it independently of its individual entries for
+  # "ĉi" and "tiu". However, "ĉi tiu" corresponds very closely to English
+  # "this", so it's useful to have entries in both translation dictionaries.
+  glosses: [this]
+- lemma: varma
+  class: adjektivo
+  # "varma" doesn't translate one-to-one with either "warm" or "hot", so it has
+  # an Esperanto definition, a (not very great) English translation to clarify
+  # the semantics, and multiple possible glosses. Note that HTML tags are
+  # allowed in any of these fields.
+  definition: ekscitanta oniajn partiklojn
+  translation: |
+    warm or hot; cf. <i>varmeta</i> ("lukewarm") and <i>varmega</i> ("hot",
+    "very hot")
+  glosses: [warm, hot]

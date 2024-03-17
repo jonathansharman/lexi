@@ -1,15 +1,18 @@
 [package]
-description = "Renders a YAML lexicon file into a Markdown dictionary"
+description = "Renders a YAML lexicon file into dictionary files."
 edition = "2021"
 license = "MIT"
 name = "lexi"
 readme = "README.md"
 repository = "https://github.com/jonathansharman/lexi"
-version = "0.1.0"
+version = "0.2.0"
 
 [dependencies]
 anyhow = "1.0.75"
 clap = {version = "4.4.8", features = ["derive"]}
+env_logger = "0.11.2"
+itertools = "0.12.1"
+log = "0.4.21"
 serde = {version = "1.0.192", features = ["derive"]}
 serde_yaml = "0.9.27"
 tera = {version = "1.19.1", default-features = false}

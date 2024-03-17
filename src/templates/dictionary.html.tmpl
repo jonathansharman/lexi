@@ -1,0 +1,23 @@
+<h1>
+{{- lexicon.format.native.prefix -}}
+{{- lexicon.format.native.title -}}
+{{- lexicon.format.native.suffix -}}
+</h1>
+{% for lexeme in lexicon.lexemes -%}
+{%- if lexeme.definition %}
+<div id="{{ lexeme.lemma }}">
+	<b><a href="#{{ lexeme.lemma }}">
+	{{- lexicon.format.native.prefix -}}
+	{{- lexeme.lemma -}}
+	{{- lexicon.format.native.suffix -}}
+	</a></b> · {{ lexicon.format.native.prefix -}}
+	{{- lexeme.class -}}
+	{{- lexicon.format.native.suffix }}
+	<div style="margin-left:20px">
+		{{- lexicon.format.native.prefix -}}
+		{{- lexeme.definition -}}
+		{{- lexicon.format.native.suffix -}}
+	</div>
+</div>
+{% endif -%}
+{%- endfor -%}
