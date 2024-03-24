@@ -4,13 +4,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize)]
 pub struct Format {
 	#[serde(default)]
-	native: NativeDictionary,
+	pub native: Native,
 	#[serde(default)]
-	native_foreign: TranslationDictionary,
+	pub native_foreign: TranslationDictionary,
 	#[serde(default)]
-	foreign_native: TranslationDictionary,
+	pub foreign_native: TranslationDictionary,
 	#[serde(default = "default_indent")]
-	indent: String,
+	pub indent: String,
 }
 
 impl Default for Format {
@@ -28,13 +28,16 @@ fn default_indent() -> String {
 	"20px".into()
 }
 
-/// Formatting settings for the monolingual dictionary and for native text in
-/// all documents.
+/// Formatting settings for the monolingual native dictionary and for native
+/// text in all documents.
 #[derive(Serialize, Deserialize, Default)]
-pub struct NativeDictionary {
-	/// Title of the monolingual, native dictionary.
+pub struct Native {
+	/// Title of the monolingual native dictionary.
 	#[serde(default)]
-	title: String,
+	pub title: String,
+	/// Optional override of the standard lexicographical sort for native text,
+	/// specified as an ascending list of graphemes.
+	pub sort: Option<Vec<String>>,
 	/// Preceeds every block of native text.
 	#[serde(default)]
 	pub prefix: String,
@@ -47,7 +50,7 @@ pub struct NativeDictionary {
 #[derive(Serialize, Deserialize)]
 pub struct TranslationDictionary {
 	#[serde(default)]
-	title: String,
+	pub title: String,
 	/// Delimiter between the lemma and its list of glosses.
 	#[serde(default = "default_delimiter")]
 	pub delimiter: String,

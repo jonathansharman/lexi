@@ -27,7 +27,6 @@ pub struct Lexicon {
 	#[serde(default)]
 	pub format: Format,
 	pub classes: Vec<String>,
-	pub sort: Option<Vec<String>>,
 	pub lexemes: Vec<Lexeme>,
 }
 
@@ -63,7 +62,7 @@ impl Lexicon {
 		}
 
 		// Sort lexemes by lemma, according to the specified sort.
-		match &lexicon.sort {
+		match &lexicon.format.native.sort {
 			Some(sort) => {
 				// TODO: Support multigraphs.
 				let sort = HashMap::<char, usize>::from_iter(
@@ -82,7 +81,7 @@ impl Lexicon {
 						)
 				});
 			}
-			None => lexicon.lexemes.sort_by_key(|lexeme| lexeme.lemma.clone()),
+			None => lexicon.lexemes.sort_by(|a, b| a.lemma.cmp(&b.lemma)),
 		};
 
 		// Warn about duplicate lemmas.

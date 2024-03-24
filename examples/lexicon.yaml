@@ -11,11 +11,6 @@ classes:
 - adjektivo
 - difinilo
 
-# Optionally sort lexemes by lemma, according to a list of graphemes. Be careful
-# when these graphemes include 'n' or 'y' since YAML treats those strings as
-# boolean literals unless they're quoted (note the 'n' below).
-sort: [a, b, c, ĉ, d, e, f, g, ĝ, h, ĥ, i, j, ĵ, k, l, m, 'n', o, p, r, s, ŝ, t, u, ŭ, v, z]
-
 # These formatting settings control how the dictionaries are rendered. The
 # format key and all nested keys are optional. Except for the titles, which
 # default to blank, the following uses all default values.
@@ -24,6 +19,10 @@ format:
   # translation dictionaries.
   native:
     title: Vortaro de Esperanto
+    # Sort native words according to a list of graphemes. Be careful when these
+    # graphemes include 'n' or 'y' since YAML treats those strings as boolean
+    # literals unless they're quoted (note the 'n' below).
+    sort: [a, b, c, ĉ, d, e, f, g, ĝ, h, ĥ, i, j, ĵ, k, l, m, 'n', o, p, r, s, ŝ, t, u, ŭ, v, z]
     # The native prefix and suffix strings will flank each block of native text
     # in any rendered content. This can be useful for adding markup tags to use
     # a custom font, for instance.
