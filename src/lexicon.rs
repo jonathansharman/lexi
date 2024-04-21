@@ -1,8 +1,6 @@
 use std::{
 	collections::{HashMap, HashSet},
-	fs::File,
-	io::BufReader,
-	path::Path,
+	io::Read,
 };
 
 use anyhow::Result;
@@ -31,12 +29,7 @@ pub struct Lexicon {
 }
 
 impl Lexicon {
-	pub fn load<P>(path: P) -> Result<Self>
-	where
-		P: AsRef<Path>,
-	{
-		let file = File::open(path)?;
-		let reader = BufReader::new(file);
+	pub fn open<R: Read>(reader: R) -> Result<Self> {
 		let de = Deserializer::from_reader(reader);
 		let mut lexicon = Lexicon::deserialize(de)?;
 

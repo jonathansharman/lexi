@@ -1,7 +1,7 @@
 mod format;
 mod lexicon;
 
-use std::{collections::HashMap, fs::File};
+use std::{collections::HashMap, fs::File, io::BufReader};
 
 use anyhow::Result;
 use clap::Parser;
@@ -37,7 +37,9 @@ fn main() -> Result<()> {
 	let args = Args::parse();
 
 	// Load and validate lexicon settings.
-	let lexicon = Lexicon::load(args.input)?;
+	let file = File::open(args.input)?;
+	let reader = BufReader::new(file);
+	let lexicon = Lexicon::open(reader)?;
 
 	// Load text templates.
 	let tera = load_templates()?;
