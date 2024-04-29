@@ -1,0 +1,39 @@
+/* Example style for improving the appearance of the generated dictionaries */
+
+.lexi-entry {
+	position: relative;
+	display: flex;
+	white-space: pre;
+}
+
+.lexi-lexeme {
+	font-weight: bold;
+}
+
+/* Use pseudo-elements to separate lexemes/classes/glosses using custom text. */
+
+.lexi-lexeme + .lexi-class::before {
+	content: ' · ';
+}
+
+.lexi-lexeme + .lexi-gloss::before {
+	content: ' — ';
+}
+
+.lexi-gloss + .lexi-gloss::before {
+	content: '; ';
+}
+
+/* Show links in the margin when the entry is hovered. */
+
+.lexi-entry-link {
+	opacity: 0;
+	font-size: small;
+	text-decoration: none;
+	position: absolute;
+	transform: translateX(-100%);
+}
+
+dt:hover .lexi-entry-link {
+	opacity: 1;
+}

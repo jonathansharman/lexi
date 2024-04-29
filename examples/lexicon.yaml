@@ -12,8 +12,7 @@ classes:
 - difinilo
 
 # These formatting settings control how the dictionaries are rendered. The
-# format key and all nested keys are optional. Except for the titles, which
-# default to blank, the following uses all default values.
+# format key and all nested keys are optional.
 format:
   # Settings for the monolingual native dictionary and for native words in the
   # translation dictionaries.
@@ -31,19 +30,9 @@ format:
   # Settings for the native-foreign translation dictionary.
   native_foreign:
     title: Esperanto-English Dictionary
-    # Separates a native word from its foreign glosses.
-    delimiter: ' · '
-    # Separates each foreign gloss for a native word.
-    gloss_delimiter: '; '
   # Settings for the foreign-native translation dictionary.
   foreign_native:
     title: English-Esperanto Dictionary
-    # Separates a foreign word from its native glosses.
-    delimiter: ' · '
-    # Separates each native gloss for a foreign word.
-    gloss_delimiter: '; '
-  # The CSS length to use for hanging indentation.
-  indent: '20px'
 
 # Most of a lexicon file will be its lexemes list. Every lexeme must include at
 # least a lemma and class. The native definition is optional; if present, the

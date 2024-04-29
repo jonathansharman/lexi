@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Formatting settings for all documents.
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct Format {
 	#[serde(default)]
 	pub native: Native,
@@ -9,23 +9,6 @@ pub struct Format {
 	pub native_foreign: TranslationDictionary,
 	#[serde(default)]
 	pub foreign_native: TranslationDictionary,
-	#[serde(default = "default_indent")]
-	pub indent: String,
-}
-
-impl Default for Format {
-	fn default() -> Self {
-		Self {
-			native: Default::default(),
-			native_foreign: Default::default(),
-			foreign_native: Default::default(),
-			indent: default_indent(),
-		}
-	}
-}
-
-fn default_indent() -> String {
-	"20px".into()
 }
 
 /// Formatting settings for the monolingual native dictionary and for native
@@ -47,32 +30,8 @@ pub struct Native {
 }
 
 /// Formatting settings for the native-foreign translation dictionary.
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct TranslationDictionary {
 	#[serde(default)]
 	pub title: String,
-	/// Delimiter between the lemma and its list of glosses.
-	#[serde(default = "default_delimiter")]
-	pub delimiter: String,
-	/// Delimiter between glosses.
-	#[serde(default = "default_gloss_delimiter")]
-	pub gloss_delimiter: String,
-}
-
-impl Default for TranslationDictionary {
-	fn default() -> Self {
-		Self {
-			title: Default::default(),
-			delimiter: default_delimiter(),
-			gloss_delimiter: default_gloss_delimiter(),
-		}
-	}
-}
-
-fn default_delimiter() -> String {
-	" · ".into()
-}
-
-fn default_gloss_delimiter() -> String {
-	"; ".into()
 }

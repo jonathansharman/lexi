@@ -1,19 +1,19 @@
 <h1>{{ lexicon.format.foreign_native.title }}</h1>
-{% for foreign_glosses in foreign_to_native -%}
+
+<dl>
+{%- for foreign_glosses in foreign_to_native -%}
 {%- set foreign = foreign_glosses.0 -%}
 {%- set glosses = foreign_glosses.1 %}
-<div id="{{ foreign }}">
-	<b><a href="#{{ foreign }}">
-		{{- foreign -}}
-	</a></b>
-	{{- lexicon.format.foreign_native.delimiter -}}
-	{%- for gloss in glosses -%}
+<dt id="{{ foreign }}" class="lexi-entry">
+	<a class="lexi-entry-link" href="#{{ foreign }}">🔗</a>
+	<span class="lexi-lexeme">{{ foreign }}</span>
+	{%- for gloss in glosses %}
+	<span class="lexi-gloss">
 		{{- lexicon.format.native.prefix -}}
 		{{- gloss -}}
 		{{- lexicon.format.native.suffix -}}
-		{%- if not loop.last -%}
-			{{- lexicon.format.foreign_native.gloss_delimiter -}}
-		{%- endif -%}
+	</span>
 	{%- endfor %}
-</div>
+</dt>
 {% endfor -%}
+</dl>

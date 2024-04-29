@@ -3,21 +3,28 @@
 {{- lexicon.format.native.title -}}
 {{- lexicon.format.native.suffix -}}
 </h1>
-{% for lexeme in lexicon.lexemes -%}
+
+<dl>
+{%- for lexeme in lexicon.lexemes -%}
 {%- if lexeme.definition %}
-<div id="{{ lexeme.lemma }}">
-	<b><a href="#{{ lexeme.lemma }}">
-	{{- lexicon.format.native.prefix -}}
-	{{- lexeme.lemma -}}
-	{{- lexicon.format.native.suffix -}}
-	</a></b> · {{ lexicon.format.native.prefix -}}
-	{{- lexeme.class -}}
-	{{- lexicon.format.native.suffix }}
-	<div style="margin-left:{{ lexicon.format.indent }}">
+<dt id="{{ lexeme.lemma }}" class="lexi-entry">
+	<a class="lexi-entry-link" href="#{{ lexeme.lemma }}">🔗</a>
+	<span class="lexi-lexeme">
 		{{- lexicon.format.native.prefix -}}
-		{{- lexeme.definition -}}
+		{{- lexeme.lemma -}}
 		{{- lexicon.format.native.suffix -}}
-	</div>
-</div>
+	</span>
+	<span class="lexi-class">
+		{{- lexicon.format.native.prefix -}}
+		{{- lexeme.class -}}
+		{{- lexicon.format.native.suffix -}}
+	</span>
+</dt>
+<dd>
+	{{- lexicon.format.native.prefix -}}
+	{{- lexeme.definition -}}
+	{{- lexicon.format.native.suffix -}}
+</dd>
 {% endif -%}
 {%- endfor -%}
+</dl>
