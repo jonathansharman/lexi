@@ -8,11 +8,11 @@ repository = "https://github.com/jonathansharman/lexi"
 version = "0.4.0"
 
 [dependencies]
-anyhow = "1.0.82"
-clap = { version = "4.5.4", features = ["derive"] }
-env_logger = "0.11.3"
+anyhow = "1.0.100"
+clap = { version = "4.5.50", features = ["derive"] }
+env_logger = "0.11.8"
 itertools = "0.12.1"
-log = "0.4.21"
-serde = { version = "1.0.198", features = ["derive"] }
+log = "0.4.28"
+serde = { version = "1.0.228", features = ["derive"] }
 serde_yaml = "0.9.34"
-tera = { version = "1.19.1", default-features = false }
+tera = { version = "1.20.0", default-features = false }
