@@ -1,6 +1,6 @@
 [package]
 description = "Renders a YAML lexicon file into dictionary files."
-edition = "2021"
+edition = "2024"
 license = "MIT"
 name = "lexi"
 readme = "README.md"
