@@ -6,7 +6,6 @@ use std::{
 use anyhow::Result;
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
-use serde_yaml::Deserializer;
 
 use crate::format::Format;
 
@@ -30,8 +29,7 @@ pub struct Lexicon {
 
 impl Lexicon {
 	pub fn open<R: Read>(reader: R) -> Result<Self> {
-		let de = Deserializer::from_reader(reader);
-		let mut lexicon = Lexicon::deserialize(de)?;
+		let mut lexicon: Lexicon = serde_saphyr::from_reader(reader)?;
 
 		// Validate lexeme classes and required fields.
 		let classes = HashSet::<&String>::from_iter(lexicon.classes.iter());
